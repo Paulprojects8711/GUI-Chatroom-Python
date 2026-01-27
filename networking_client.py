@@ -18,10 +18,10 @@ class client:
             packetType = splitData[0]
             if len(splitData) >= 2: # if it is less than two error happened
                 data = splitData[1]
-                if data == "chat":
-                    print(splitData[1])
+                if packetType == "chat":
+                    print(data)
     def send(self, packetType, msg):
-        self.sock.sendto(packetType + "|" + msg.encode("utf-8"), self.ADDRESS) # sends msg to the remote socket
+        self.sock.sendto((packetType + "|" + msg).encode("utf-8"), self.ADDRESS) # sends msg to the remote socket
     
     def close(self, reason):
         self.sock.close() # close the socket what do you expect

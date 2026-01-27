@@ -1,10 +1,17 @@
 from networking_server import *
+from hash import *
 import threading
 
 port = int(input("Port: "))
-s = server(port)
+key = input("Auth Key: ")
+if key == "":
+    s = server(port, None)
+else:
+    s = server(port, hash(key))
 recv_thread = threading.Thread(target=s.recv, args=(1024,), daemon=True)
+timeout_thread = threading.Thread(target=s.userTimeout, daemon=True)
 recv_thread.start()
-s.broadcast("hi")
+timeout_thread.start()
 while True:
-    pass
+    if input("> ") == "/stop" or "stop":
+        break
