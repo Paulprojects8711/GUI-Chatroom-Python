@@ -1,4 +1,5 @@
 from networking_client import *
+from encrypt import *
 import threading
 
 ip = input("IP: ")
@@ -7,12 +8,20 @@ username = input("Username: ")
 if username == "":
     print("Username cannot be empty")
     quit()
-c = client(ip, port)
-c.send("join", username)
-c.send("chat", input("send what: "))
+c = client(ip, port, username)
 
-recv_thread = threading.Thread(target=c.recv, args=(1024,), daemon=True)
+ping_thread = threading.Thread(target=c.ping, daemon=True)
+recv_thread = threading.Thread(target=c.recv, daemon=True)
+ping_thread.start()
 recv_thread.start()
 
-while True:
-    pass
+while c.sock != None:
+    i = input()
+    if i.lower() == "/leave" or i.lower() == "leave":
+        c.send("leave", c.NAME)
+        c.sock.close()
+        quit()
+    else:
+        if c.KEY == "" or c.KEY == None: key = c.DEFAULT_KEY
+        else: key = c.KEY
+        c.send("chat", encrypt(i, c.SALT, key))

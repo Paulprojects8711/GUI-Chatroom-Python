@@ -1,6 +1,7 @@
 import socket
 import json
 import time
+from hash import *
 from user_class import *
 from helpers import *
 
@@ -54,7 +55,7 @@ class server:
                             self.broadcastVCUsers()
 
                 elif packetType == "auth":
-                    if not self.verify(packetData,self.KEY):
+                    if not verify(packetData,self.KEY):
                         u, loops = self.getUserByAddress(address)
                         assert u != None, "User is None"
                         print(f"User {u.name} got the auth key wrong")
