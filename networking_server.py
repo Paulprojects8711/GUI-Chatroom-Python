@@ -19,6 +19,7 @@ class server:
             print(f"Server started on Port {self.PORT}")
         except Exception as e:
             print("Error:", e)
+            quit()
 
     def recv(self, recv_bytes):
         try:
@@ -120,6 +121,7 @@ class server:
                         self.broadcastVCUsers()
         except Exception as e:
             print("Error:", e)
+            quit()
 
     def broadcast(self, msg):
         packet = msg.encode("utf-8")
@@ -199,4 +201,4 @@ class server:
                         self.broadcastVCUsers()
         except Exception as e:
             print(e)
-            print("normally handleStop and handleError but we dont have the gui yet")
+            quit()
