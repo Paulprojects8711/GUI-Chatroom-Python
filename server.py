@@ -16,4 +16,4 @@ timeout_thread.start()
 while True:
     i = input().lower()
     if i == "/stop" or i == "stop":
-        break
+        quit()
