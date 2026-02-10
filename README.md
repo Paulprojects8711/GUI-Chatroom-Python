@@ -1,5 +1,6 @@
 # GUI-Chatroom-Python
 An end-to-end encrypted Graphical User Interface Chatroom but remade in Python
+
 This is a more minimal version, since it does not have a GUI, it does not support Auto-Updating and the client isn't capable of doing Voice Chat
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/U7U61QBY0C)
