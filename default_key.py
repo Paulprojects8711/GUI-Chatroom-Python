@@ -4,7 +4,7 @@ from pathlib import Path
 from urllib import request, error
 
 class DefaultKeyManager:
-    GITHUB_URL = "https://raw.githubusercontent.com/Paulprojects8711/GUI-Chatroom/default-key/default_key.json"
+    GITHUB_URL = "https://raw.githubusercontent.com/paul8711-code/GUI-Chatroom/default-key/default_key.json"
     CACHE_FILE = Path.home() / ".gui-chatroom" / "default_key.json"
 
     def get_default_key():
